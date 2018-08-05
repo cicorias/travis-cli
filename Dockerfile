@@ -23,7 +23,7 @@ WORKDIR /root
 # Default travis config directory: ~/.travis
 VOLUME /root/.travis
 
-# Mount your project to /data
+# Mount your project to /data - essentially the git repo
 VOLUME /data
 WORKDIR /data
 

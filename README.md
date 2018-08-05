@@ -5,7 +5,7 @@
 Two volumes `/data` and `/root/.travis` are defined.
 
 The `/data` is where the Docker HOST (your machine) shouldprobably be mapped - this would have any scripts, data, etc. that is needed.
-> NOTE: this is essentially your project directory
+> NOTE: this is essentially your project directory AND the **git repo**
 
 The `/root/.travis` is where any of Travis configuration options are store or end up...
 
@@ -28,7 +28,7 @@ docker run -it --rm -v `pwd`:/data -v $HOME/.travis:/root/.travis cicorias/travi
 This example creates a separate folder for the `.travis` profile infomration
 >WARNING: this directory contains secrets / tokens and should never be shared and should have proper ACLs to prevent others from reading
 ```
-docker run -it --rm -v C:\g\containers\travis-cli\travis:/root/.travis -v C:\g\containers\travis-cli\data:/data cicorias/travis-cli login
+docker run -it --rm -v C:\g\containers\travis-cli\travis:/root/.travis -v C:\g\containers\travis-cli\:/data cicorias/travis-cli login
 ```
 
 #### PowerShell (Windows for now)
@@ -36,7 +36,7 @@ This does the same as above, but uses PowerShell's `${PWD}` for the absolute pat
 
 >WARNING: this directory contains secrets / tokens and should never be shared and should have proper ACLs to prevent others from reading
 ```
-docker run -it --rm -v ${PWD}\travis:/root/.travis -v ${PWD}\data:/data cicorias/travis-cli login
+docker run -it --rm -v ${PWD}/travis:/root/.travis -v ${PWD}:/data cicorias/travis-cli login
 ```
 
 
@@ -46,7 +46,7 @@ Since the `docker run` command used the `--rm` parameter, the container is remov
 Now, run a command `whomai` to see the logged on information
 
 ```
-docker run -it --rm -v ${PWD}\travis:/root/.travis -v ${PWD}\data:/data cicorias/travis-cli whoami
+docker run -it --rm -v ${PWD}/travis:/root/.travis -v ${PWD}:/data cicorias/travis-cli whoami
 ```
 
 For me my output was:
