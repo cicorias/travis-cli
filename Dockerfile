@@ -15,6 +15,7 @@ RUN apk add --no-cache ruby ruby-io-console ruby-json git && \
     apk add --no-cache --virtual build_deps \
     build-base ruby-dev libc-dev libffi-dev linux-headers
 RUN gem install travis -v ${TRAVIS_VERSION} --no-rdoc --no-ri
+RUN gem install pry --no-rdoc --no-ri
 RUN apk del build_deps
 
 WORKDIR /root
